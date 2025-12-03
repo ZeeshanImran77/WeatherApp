@@ -6,7 +6,13 @@ h5,
 h6 {
   color: #000000 !important;
 }
+h1 {
+  font-weight: 900 !important;
+}
 
+.container > h1 {
+  -webkit-text-stroke: 1px white;
+}
 .weather-clear {
   background: linear-gradient(to right, #fef253, #ff7300);
   color: #333;
@@ -67,12 +73,13 @@ h6 {
   background: linear-gradient(to right, #0f0c29, #302b63);
   color: #fff;
 }
+.weather-icon {
+  text-align: center;
+}
 .weather-icon svg {
   color: black !important;
   height: 100px;
   width: 100px;
-  margin: auto;
-  display: block;
 }
 .weather-app {
   height: 100dvh;
@@ -114,15 +121,29 @@ p {
 .weather-box {
   padding: 40px;
   background: rgba(255, 255, 255, 0.15);
+  border: 1px solid white;
   backdrop-filter: blur(31px);
   -webkit-backdrop-filter: blur(31px);
   border-radius: 20px;
   position: relative;
   overflow: hidden;
 }
-
+.weather-box .top {
+  display: flex;
+  align-items: end;
+  justify-content: space-around;
+  border-bottom: 2px solid white;
+  padding-bottom: 40px;
+}
+.weather-box .top * {
+  margin-bottom: 0;
+}
+.weather-box .top > * {
+  flex: 1;
+}
 .weather-box .row .col-lg-4 {
-  border-right: 1px solid white;
+  border-right: 2px solid white;
+  padding-top: 40px;
 }
 .weather-box .row .col-lg-4:last-child {
   border: none;
@@ -131,6 +152,7 @@ p {
 @media (max-width: 767px) {
   .weather-box .row .col-lg-4 {
     border-right: none;
+    padding-top: 0;
   }
 
   .search-form {
@@ -150,5 +172,16 @@ p {
   }
   .weather-box {
     padding: 10px 0px;
+  }
+  .weather-box .top {
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-bottom: 20px;
+  }
+  .weather-icon {
+    display: flex;
+    align-items: center;
   }
 }

@@ -57,6 +57,8 @@ function App() {
     return `weather-${weatherMain.toLowerCase()}` || "weather-clear";
   };
 
+  const isDay = weatherData && weatherData.weather[0].icon.endsWith("d");
+
   const weatherIcons = {
     Clear: <WiDaySunny size={50} color="#FFD700" />, // sunny
     Clouds: <WiCloud size={50} color="#B0C4DE" />, // cloudy
@@ -86,7 +88,7 @@ function App() {
         }`}
       >
         <div className="container">
-          <h1 className="text-center">Weather App</h1>
+          <h1 className="text-center display-1">Weather App</h1>
           <SearchBar weatherCall={weatherCall} />
           {loading && (
             <div
@@ -105,27 +107,33 @@ function App() {
           )}
           {weatherData && (
             <div className="weather-box">
-              <h1 className="d-flex display-1 justify-content-center align-items-baseline fw-bold">
-                {Math.round(weatherData.main.temp)}
-                <p className="display-6 fw-bold">°C</p>
-              </h1>
-              <div className="weather-icon">
-                {weatherData && weatherIcons[weatherData.weather[0].main]}
-              </div>
-              <div className="d-flex align-items-baseline justify-content-center gap-5">
-                <h4 className="d-flex align-items-baseline gap-2">
-                  <FaMapMarkerAlt />
-                  {weatherData.name}
-                </h4>
+              <div className="top">
+                <h1 className="d-flex display-1 justify-content-center align-items-baseline fw-bold">
+                  {Math.round(weatherData.main.temp)}
+                  <p className="display-6 fw-bold">
+                    °C - <span>{isDay ? "Day" : "Night"}</span>
+                  </p>
+                </h1>
+                <div className="weather-icon">
+                  {weatherData && weatherIcons[weatherData.weather[0].main]}
+                  <p className="mb-0">{weatherData.weather[0].main}</p>
+                </div>
 
-                <h6>{weatherData.sys.country}</h6>
-                <h4 className="d-flex align-items-center">
-                  <p className="mb-0 ">feels </p>(
-                  {Math.round(weatherData.main.feels_like)}°C)
-                </h4>
+                <div className="d-flex align-items-baseline justify-content-center gap-5">
+                  <h4 className="d-flex align-items-baseline gap-2">
+                    <FaMapMarkerAlt />
+                    {weatherData.name}
+                  </h4>
+
+                  <h6>{weatherData.sys.country}</h6>
+                  <h4 className="d-flex align-items-center">
+                    <p className="mb-0 ">feels </p>(
+                    {Math.round(weatherData.main.feels_like)}°C)
+                  </h4>
+                </div>
               </div>
 
-              <div className="row mt-5">
+              <div className="row">
                 <div className="col-lg-4 col-md-4 text-center col-12">
                   <p>
                     <span className="font-semibold">Min : </span>
