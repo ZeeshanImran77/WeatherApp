@@ -2,6 +2,22 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
 import { FaMapMarkerAlt } from "react-icons/fa";
+import {
+  WiDaySunny,
+  WiCloud,
+  WiRain,
+  WiSprinkle,
+  WiThunderstorm,
+  WiSnow,
+  WiFog,
+  WiSmoke,
+  WiDust,
+  WiSandstorm,
+  WiVolcano,
+  WiStrongWind,
+  WiTornado,
+} from "react-icons/wi";
+
 import SearchBar from "./SearchBar";
 
 function App() {
@@ -41,6 +57,24 @@ function App() {
     return `weather-${weatherMain.toLowerCase()}` || "weather-clear";
   };
 
+  const weatherIcons = {
+    Clear: <WiDaySunny size={50} color="#FFD700" />, // sunny
+    Clouds: <WiCloud size={50} color="#B0C4DE" />, // cloudy
+    Rain: <WiRain size={50} color="#4e54c8" />, // rainy
+    Drizzle: <WiSprinkle size={50} color="#4e54c8" />, // drizzle
+    Thunderstorm: <WiThunderstorm size={50} color="#373b44" />, // storm
+    Snow: <WiSnow size={50} color="#e0eafc" />, // snow
+    Mist: <WiFog size={50} color="#606c88" />, // mist
+    Smoke: <WiSmoke size={50} color="#bdc3c7" />, // smoke
+    Haze: <WiFog size={50} color="#606c88" />, // haze
+    Dust: <WiDust size={50} color="#b79891" />, // dust
+    Fog: <WiFog size={50} color="#606c88" />, // fog
+    Sand: <WiSandstorm size={50} color="#c2b280" />, // sand
+    Ash: <WiVolcano size={50} color="#888888" />, // ash
+    Squall: <WiStrongWind size={50} color="#434343" />, // squall
+    Tornado: <WiTornado size={50} color="#0f0c29" />, // tornado
+  };
+
   console.log(weatherData);
   return (
     <>
@@ -75,6 +109,9 @@ function App() {
                 {Math.round(weatherData.main.temp)}
                 <p className="display-6 fw-bold">°C</p>
               </h1>
+              <div className="weather-icon">
+                {weatherData && weatherIcons[weatherData.weather[0].main]}
+              </div>
               <div className="d-flex align-items-baseline justify-content-center gap-5">
                 <h4 className="d-flex align-items-baseline gap-2">
                   <FaMapMarkerAlt />

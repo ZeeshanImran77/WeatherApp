@@ -67,7 +67,13 @@ h6 {
   background: linear-gradient(to right, #0f0c29, #302b63);
   color: #fff;
 }
-
+.weather-icon svg {
+  color: black !important;
+  height: 100px;
+  width: 100px;
+  margin: auto;
+  display: block;
+}
 .weather-app {
   height: 100dvh;
   display: grid;
